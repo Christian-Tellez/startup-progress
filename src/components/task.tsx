@@ -1,4 +1,4 @@
-import { TaskType } from "./types";
+import { type TaskType } from "./startup-progress.types";
 
 type Props = TaskType;
 

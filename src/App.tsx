@@ -1,7 +1,7 @@
 import "./App.css";
 import { AddTaskForm } from "./components/add-task-form";
 import { StartupProgress } from "./components/startup-progress";
-import { STAGE_NAMES, StageType } from "./components/types";
+import { STAGE_NAMES, type StageType } from "./components/startup-progress.types";
 
 const stages: StageType[] = [
   { id: 1, name: STAGE_NAMES.FOUNDATION, tasks: [] },

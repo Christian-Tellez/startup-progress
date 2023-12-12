@@ -1,5 +1,5 @@
 import React from "react";
-import { STAGE_NAMES } from "./types";
+import { STAGE_NAMES } from "./startup-progress.types";
 
 // Workaround to avoid hustle with submit event type
 type FormElements = HTMLFormControlsCollection & {

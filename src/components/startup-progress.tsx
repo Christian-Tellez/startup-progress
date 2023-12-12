@@ -1,5 +1,5 @@
 import { Stage } from "./stage";
-import { StageType } from "./types";
+import { type StageType } from "./startup-progress.types";
 
 type Props = {
   stages: StageType[];

@@ -1,5 +1,5 @@
 import { Task } from "./task";
-import { StageType } from "./types";
+import { type StageType } from "./startup-progress.types";
 
 type Props = StageType;
 
