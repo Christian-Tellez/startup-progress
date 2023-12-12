@@ -14,6 +14,13 @@ const initialStages: StageType[] = [
   { order: 3, name: STAGE_NAMES.DELIVERY, tasks: [], unlocked: false },
 ];
 
+async function fetchRandomFact() {
+  const response = await fetch(
+    "https://uselessfacts.jsph.pl/api/v2/facts/random"
+  );
+  return await response.json();
+}
+
 const App = () => {
   const localStorageStages = localStorage.getItem("stages");
   const currentStages = localStorageStages
@@ -97,6 +104,10 @@ const App = () => {
 
     return stage;
   });
+
+  if (allowedStages.every((s) => s.tasks.every((t) => t.checked === true))) {
+    fetchRandomFact().then((randomFact) => alert(randomFact.text));
+  }
 
   return (
     <>
