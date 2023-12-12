@@ -11,7 +11,8 @@ const Stage = ({ order, name, tasks, setChecked }: Props) => {
     setChecked(id, checked, name);
   };
 
-  const allTasksCompleted = tasks.every((task) => task.checked === true);
+  const allTasksCompleted =
+    tasks.length && tasks.every((task) => task.checked === true);
 
   return (
     <>
@@ -23,11 +24,15 @@ const Stage = ({ order, name, tasks, setChecked }: Props) => {
         <div style={allTasksCompleted ? {} : { display: "none" }}>&#10004;</div>
       </div>
       <ul className="task-list">
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <Task {...task} setChecked={onSetChecked} />
-          </li>
-        ))}
+        {tasks.length ? (
+          tasks.map((task) => (
+            <li key={task.id}>
+              <Task {...task} setChecked={onSetChecked} />
+            </li>
+          ))
+        ) : (
+          <i>What are you waiting for? Add new tasks!</i>
+        )}
       </ul>
     </>
   );
