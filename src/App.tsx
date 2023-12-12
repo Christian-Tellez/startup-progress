@@ -23,12 +23,35 @@ const App = () => {
 
   const handleAddTask = (taskName: string, stageName: StageName) => {
     const newTask = { id: crypto.randomUUID(), name: taskName, checked: false };
+    // TODO: refactor this. Maybe use reducer
     const updatedStages = stages.map((stage) => {
       if (stage.name === stageName) {
         stage.tasks.push(newTask);
       }
       return stage;
     });
+
+    setStages(updatedStages);
+    localStorage.setItem("stages", JSON.stringify(updatedStages));
+  };
+
+  const handleChecked = (
+    id: string,
+    checked: boolean,
+    stageName: StageName
+  ) => {
+    // TODO: this code could be cleaner too
+    const updatedStages = stages.map((stage) => {
+      if (stage.name !== stageName) return stage;
+
+      stage.tasks.map((task) => {
+        if (task.id === id) task.checked = checked;
+        return task;
+      });
+
+      return stage;
+    });
+
     setStages(updatedStages);
     localStorage.setItem("stages", JSON.stringify(updatedStages));
   };
@@ -36,7 +59,7 @@ const App = () => {
   return (
     <>
       <AddTaskForm addTask={handleAddTask} />
-      <StartupProgress stages={stages} />
+      <StartupProgress stages={stages} setChecked={handleChecked} />
     </>
   );
 };

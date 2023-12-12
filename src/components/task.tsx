@@ -1,8 +1,10 @@
 import { type TaskType } from "./startup-progress.types";
 
-type Props = TaskType;
+type Props = TaskType & {
+  setChecked: (id: string, cheched: boolean) => void;
+};
 
-const Task = ({ id, name, checked }: Props) => {
+const Task = ({ id, name, checked, setChecked }: Props) => {
   return (
     <>
       <input
@@ -11,7 +13,9 @@ const Task = ({ id, name, checked }: Props) => {
         name={name}
         aria-label="task"
         checked={checked}
-        onChange={() => {}}
+        onChange={(e) => {
+          setChecked(id, e.target.checked);
+        }}
       />
       <label htmlFor={id}>{name}</label>
     </>
