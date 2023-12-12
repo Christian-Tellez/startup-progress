@@ -1,0 +1,9 @@
+form {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.stage-select {
+  text-transform: capitalize;
+}
