@@ -23,7 +23,7 @@ This is a simple application that documents that process.
 - [ ] ❓ Make disabled stages more clear to the user
 
 > [!NOTE]
-> ❓ = not directly in requirements, but good to have (tests are a must tho 😞)
+> ❓ = not directly in requirements, but good to have (tests were a must tho 😞)
 
 ## How to run the code
 
