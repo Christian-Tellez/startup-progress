@@ -40,10 +40,28 @@ const App = () => {
     checked: boolean,
     stageName: StageName
   ) => {
-    // TODO: this code could be cleaner too
+    let undoFutureTasks = false;
+    const stageOrder = stages.find((s) => s.name === stageName)?.order ?? 0;
+
+    if (!checked) {
+      const futureStages = stages.filter((s) => s.order > stageOrder);
+      undoFutureTasks = futureStages.some((s) =>
+        s.tasks.some((t) => t.checked === true)
+      );
+
+      // TODO: move this to a dialog instead of using window.confirm()
+      const userAgrees =
+        futureStages.length && undoFutureTasks
+          ? confirm(
+              "If you undo this task, all the tasks from the next stages are going to be undone too. Are you sure?"
+            )
+          : true;
+      if (!userAgrees) return;
+    }
+
+    // TODO: this code could be cleaner
     const updatedStages = stages.map((stage) => {
       if (stage.name !== stageName) return stage;
-
       stage.tasks.map((task) => {
         if (task.id === id) task.checked = checked;
         return task;
@@ -52,8 +70,21 @@ const App = () => {
       return stage;
     });
 
-    setStages(updatedStages);
-    localStorage.setItem("stages", JSON.stringify(updatedStages));
+    const correctedStages = undoFutureTasks
+      ? updatedStages.map((stage) => {
+          if (stage.name === stageName || stage.order < stageOrder)
+            return stage;
+          stage.tasks.map((task) => {
+            task.checked = false;
+            return task;
+          });
+
+          return stage;
+        })
+      : updatedStages;
+
+    setStages(correctedStages);
+    localStorage.setItem("stages", JSON.stringify(correctedStages));
   };
 
   const allowedStages = stages.map((stage) => {
@@ -66,8 +97,6 @@ const App = () => {
 
     return stage;
   });
-
-  console.log(allowedStages);
 
   return (
     <>
