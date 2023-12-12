@@ -7,6 +7,7 @@ import {
   StageName,
   type StageType,
 } from "./components/startup-progress.types";
+import { fetchRandomFact } from "./fetch-data";
 
 const initialStages: StageType[] = [
   { order: 1, name: STAGE_NAMES.FOUNDATION, tasks: [], unlocked: true },
@@ -14,19 +15,11 @@ const initialStages: StageType[] = [
   { order: 3, name: STAGE_NAMES.DELIVERY, tasks: [], unlocked: false },
 ];
 
-async function fetchRandomFact() {
-  const response = await fetch(
-    "https://uselessfacts.jsph.pl/api/v2/facts/random"
-  );
-  return await response.json();
-}
-
 const App = () => {
-  const localStorageStages = localStorage.getItem("stages");
-  const currentStages = localStorageStages
-    ? (JSON.parse(localStorageStages) as StageType[])
-    : initialStages;
-  const [stages, setStages] = useState<StageType[]>(currentStages);
+  const [stages, setStages] = useState<StageType[]>(() => {
+    const localStorageStages = localStorage.getItem("stages");
+    return localStorageStages ? JSON.parse(localStorageStages) : initialStages;
+  });
 
   const handleAddTask = (taskName: string, stageName: StageName) => {
     const newTask = { id: crypto.randomUUID(), name: taskName, checked: false };
@@ -105,7 +98,11 @@ const App = () => {
     return stage;
   });
 
-  if (allowedStages.every((s) => s.tasks.every((t) => t.checked === true))) {
+  if (
+    allowedStages.every(
+      (s) => s.tasks.length && s.tasks.every((t) => t.checked === true)
+    )
+  ) {
     fetchRandomFact().then((randomFact) => alert(randomFact.text));
   }
 
