@@ -1,42 +1,19 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import { AddTaskForm } from "./components/add-task-form";
+import { StartupProgress } from "./components/startup-progress";
+import { STAGE_NAMES, StageType } from "./components/types";
+
+const stages: StageType[] = [
+  { id: 1, name: STAGE_NAMES.FOUNDATION, tasks: [] },
+  { id: 2, name: STAGE_NAMES.DISCOVERY, tasks: [] },
+  { id: 3, name: STAGE_NAMES.DELIVERY, tasks: [] },
+];
 
 function App() {
-  const [count, setCount] = useState(localStorage.clickcount);
-
-  function clickCounter() {
-    if (localStorage.clickcount) {
-      localStorage.clickcount = Number(localStorage.clickcount) + 1;
-    } else {
-      localStorage.clickcount = 1;
-    }
-
-    console.log(localStorage.clickcount);
-    setCount(localStorage.clickcount);
-  }
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={clickCounter}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <AddTaskForm />
+      <StartupProgress stages={stages} />
     </>
   );
 }
