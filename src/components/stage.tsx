@@ -6,7 +6,7 @@ type Props = StageType & {
   setChecked: (id: string, cheched: boolean, stageName: StageName) => void;
 };
 
-const Stage = ({ order, name, tasks, setChecked }: Props) => {
+const Stage = ({ order, name, tasks, unlocked, setChecked }: Props) => {
   const onSetChecked = (id: string, checked: boolean) => {
     setChecked(id, checked, name);
   };
@@ -15,7 +15,7 @@ const Stage = ({ order, name, tasks, setChecked }: Props) => {
     tasks.length && tasks.every((task) => task.checked === true);
 
   return (
-    <>
+    <div style={unlocked ? {} : { opacity: 0.5 }}>
       <div className="stage-title">
         <div>
           <div>{order}</div>
@@ -27,14 +27,14 @@ const Stage = ({ order, name, tasks, setChecked }: Props) => {
         {tasks.length ? (
           tasks.map((task) => (
             <li key={task.id}>
-              <Task {...task} setChecked={onSetChecked} />
+              <Task {...task} setChecked={onSetChecked} unlocked={unlocked} />
             </li>
           ))
         ) : (
           <i>What are you waiting for? Add new tasks!</i>
         )}
       </ul>
-    </>
+    </div>
   );
 };
 

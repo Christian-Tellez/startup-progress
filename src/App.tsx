@@ -9,9 +9,9 @@ import {
 } from "./components/startup-progress.types";
 
 const initialStages: StageType[] = [
-  { order: 1, name: STAGE_NAMES.FOUNDATION, tasks: [] },
-  { order: 2, name: STAGE_NAMES.DISCOVERY, tasks: [] },
-  { order: 3, name: STAGE_NAMES.DELIVERY, tasks: [] },
+  { order: 1, name: STAGE_NAMES.FOUNDATION, tasks: [], unlocked: true },
+  { order: 2, name: STAGE_NAMES.DISCOVERY, tasks: [], unlocked: false },
+  { order: 3, name: STAGE_NAMES.DELIVERY, tasks: [], unlocked: false },
 ];
 
 const App = () => {
@@ -56,10 +56,23 @@ const App = () => {
     localStorage.setItem("stages", JSON.stringify(updatedStages));
   };
 
+  const allowedStages = stages.map((stage) => {
+    if (stage.order === 1) return stage;
+    const priorStages = stages.filter((s) => s.order < stage.order);
+
+    stage.unlocked = false;
+    if (priorStages.every((s) => s.tasks.every((t) => t.checked === true)))
+      stage.unlocked = true;
+
+    return stage;
+  });
+
+  console.log(allowedStages);
+
   return (
     <>
       <AddTaskForm addTask={handleAddTask} />
-      <StartupProgress stages={stages} setChecked={handleChecked} />
+      <StartupProgress stages={allowedStages} setChecked={handleChecked} />
     </>
   );
 };

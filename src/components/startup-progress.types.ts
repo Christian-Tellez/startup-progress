@@ -15,4 +15,5 @@ export type StageType = {
   order: number;
   name: StageName;
   tasks: TaskType[];
+  unlocked: boolean;
 };
