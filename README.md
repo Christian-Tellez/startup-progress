@@ -19,4 +19,4 @@ npm run dev
 > The app looks less ugly in dark mode
 
 > [!NOTE]
-> This app is developed using React + TypeScript + Vite so, for more info about it, check their site: https://vitejs.dev/guide/ (they don't pay me for this, but I wanted to use [!NOTE])
+> The app was developed using React + TypeScript + Vite so, for more info about it, check their site: https://vitejs.dev/guide/ (they don't pay me for this, but I wanted to use [!NOTE])
