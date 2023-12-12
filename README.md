@@ -1,6 +1,6 @@
 # My startup progress
 
-Every startup goes through several stages. In every stage, tere are necessary steps to be accomplished.
+Every startup goes through several stages. In every stage, there are necessary steps to be accomplished.
 
 This is a simple application that documents that process.
 
