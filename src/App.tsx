@@ -1,7 +1,10 @@
 import "./App.css";
 import { AddTaskForm } from "./components/add-task-form";
 import { StartupProgress } from "./components/startup-progress";
-import { STAGE_NAMES, type StageType } from "./components/startup-progress.types";
+import {
+  STAGE_NAMES,
+  type StageType,
+} from "./components/startup-progress.types";
 
 const stages: StageType[] = [
   { id: 1, name: STAGE_NAMES.FOUNDATION, tasks: [] },
@@ -9,13 +12,13 @@ const stages: StageType[] = [
   { id: 3, name: STAGE_NAMES.DELIVERY, tasks: [] },
 ];
 
-function App() {
+const App = () => {
   return (
     <>
       <AddTaskForm />
       <StartupProgress stages={stages} />
     </>
   );
-}
+};
 
-export default App;
+export { App };
