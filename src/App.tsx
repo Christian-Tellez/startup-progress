@@ -40,6 +40,7 @@ const App = () => {
     checked: boolean,
     stageName: StageName
   ) => {
+    // TODO: refactor this and create handleUndo
     let undoFutureTasks = false;
     const stageOrder = stages.find((s) => s.name === stageName)?.order ?? 0;
 
@@ -59,7 +60,6 @@ const App = () => {
       if (!userAgrees) return;
     }
 
-    // TODO: this code could be cleaner
     const updatedStages = stages.map((stage) => {
       if (stage.name !== stageName) return stage;
       stage.tasks.map((task) => {
