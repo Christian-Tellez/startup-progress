@@ -1,16 +1,23 @@
 import { Task } from "./task";
 import { type StageType } from "./startup-progress.types";
+import "./stage.css";
 
 type Props = StageType;
 
-const Stage = ({ id, name, tasks }: Props) => {
+const Stage = ({ order, name, tasks }: Props) => {
   return (
     <>
-      <div>{id}</div>
-      <h3>{name}</h3>
-      {tasks.map((task) => (
-        <Task {...task} />
-      ))}
+      <div className="stage-title">
+        <div>{order}</div>
+        <h3>{name}</h3>
+      </div>
+      <ul className="task-list">
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <Task {...task} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 };

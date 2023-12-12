@@ -1,4 +1,5 @@
 export type TaskType = {
+  id: string;
   name: string;
   checked: boolean;
 };
@@ -8,10 +9,10 @@ export const STAGE_NAMES = {
   DISCOVERY: "discovery",
   DELIVERY: "delivery",
 } as const;
-type StageName = (typeof STAGE_NAMES)[keyof typeof STAGE_NAMES];
+export type StageName = (typeof STAGE_NAMES)[keyof typeof STAGE_NAMES];
 
 export type StageType = {
-  id: number;
+  order: number;
   name: StageName;
   tasks: TaskType[];
 };

@@ -2,11 +2,18 @@ import { type TaskType } from "./startup-progress.types";
 
 type Props = TaskType;
 
-const Task = ({ name, checked }: Props) => {
+const Task = ({ id, name, checked }: Props) => {
   return (
     <>
-      <input type="checkbox" name={name} aria-label="task" checked={checked} />
-      <label htmlFor={name}>Horns</label>
+      <input
+        type="checkbox"
+        id={id}
+        name={name}
+        aria-label="task"
+        checked={checked}
+        onChange={() => {}}
+      />
+      <label htmlFor={id}>{name}</label>
     </>
   );
 };

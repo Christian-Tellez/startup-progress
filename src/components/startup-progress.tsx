@@ -7,12 +7,12 @@ type Props = {
 
 const StartupProgress = ({ stages }: Props) => {
   return (
-    <>
+    <section>
       <h2>My startup progress</h2>
       {stages.map((stage) => (
-        <Stage {...stage} key={stage.id} />
+        <Stage {...stage} key={stage.order} />
       ))}
-    </>
+    </section>
   );
 };
 
