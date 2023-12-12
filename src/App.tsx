@@ -7,7 +7,7 @@ import {
   StageName,
   type StageType,
 } from "./components/startup-progress.types";
-import { fetchRandomFact } from "./fetch-data";
+import { fetchRandomFact } from "./services/random-fact";
 
 const initialStages: StageType[] = [
   { order: 1, name: STAGE_NAMES.FOUNDATION, tasks: [], unlocked: true },
@@ -103,7 +103,8 @@ const App = () => {
       (s) => s.tasks.length && s.tasks.every((t) => t.checked === true)
     )
   ) {
-    fetchRandomFact().then((randomFact) => alert(randomFact.text));
+    // TODO: use hook and not call service directly
+    fetchRandomFact().then((text) => alert(text));
   }
 
   return (
