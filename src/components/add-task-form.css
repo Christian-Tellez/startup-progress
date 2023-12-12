@@ -2,6 +2,8 @@ form {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid rgba(117, 117, 117, 0.87);
 }
 
 .stage-select {
