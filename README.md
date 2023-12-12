@@ -27,7 +27,7 @@ This is a simple application that documents that process.
 
 ## How to run the code
 
-You can find the code deployed here: https://christian-tellez.github.io/startup-progress/
+You can find the code deployed here: https://christian-tellez.github.io/startup-progress/ (👀 use this to test the app)
 
 Or you can clone the repository and run it in your local machine. Make sure to install all dependencies before doing so
 
